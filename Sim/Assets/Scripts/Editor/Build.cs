@@ -332,7 +332,7 @@ namespace Simulator.Editor
                             };
 
                             var builds = new[] {
-                                (build: linuxBuild,     platform: UnityEditor.BuildTarget.StandaloneLinux64),
+                                //(build: linuxBuild,     platform: UnityEditor.BuildTarget.StandaloneLinux64),
                                 (build: windowsBuild,   platform: UnityEditor.BuildTarget.StandaloneWindows64)
                             };
 

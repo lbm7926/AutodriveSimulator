@@ -106,14 +106,14 @@ namespace Simulator
 
         private void Start()
         {
-            //if (!EditorLoader)
-            //{
-            //    Init();
-            //}
-            //else
-            //{
-            //    EditorInit();
-            //}
+            if (!EditorLoader)
+            {
+                Init();
+            }
+            else
+            {
+                EditorInit();
+            }
         }
 
         private void Init()
