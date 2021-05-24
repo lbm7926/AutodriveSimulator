@@ -26,7 +26,7 @@ namespace Battlehub.RTSL
     public class ProtobufSerializer : ISerializer
     {
 #if !UNITY_EDITOR 
-        private static RTSLTypeModel model = new RTSLTypeModel();
+        //private static RTSLTypeModel model = new RTSLTypeModel();
 #else
         private static RuntimeTypeModel model = TypeModelCreator.Create();
 #endif

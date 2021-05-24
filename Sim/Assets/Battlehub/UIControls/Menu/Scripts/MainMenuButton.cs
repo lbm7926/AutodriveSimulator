@@ -51,15 +51,25 @@ namespace Battlehub.UIControls.MenuControl
             set
             {
                 m_normalColor = value;
-                if(m_selection != null)
+                if (m_selection != null)
                 {
-                    if(!m_isPointerOver)
+                    if (!m_isPointerOver)
                     {
                         m_selection.color = m_normalColor;
                     }
                 }
             }
         }
+
+        [SerializeField]
+        public Sprite PointerOverImage;
+
+        [SerializeField]
+        public Sprite FocusedImage;
+
+        [SerializeField]
+        public Sprite NormalImage;
+
 
         [SerializeField]
         private Text m_text = null;
@@ -69,7 +79,7 @@ namespace Battlehub.UIControls.MenuControl
             get { return m_text != null ? m_text.text : null; }
             set
             {
-                if(m_text != null)
+                if (m_text != null)
                 {
                     m_text.text = value;
                 }
@@ -81,12 +91,12 @@ namespace Battlehub.UIControls.MenuControl
 
         private void Awake()
         {
-            if(m_selection == null)
+            if (m_selection == null)
             {
                 m_selection = GetComponent<Image>();
             }
 
-            if(m_menu != null)
+            if (m_menu != null)
             {
                 m_menu.Anchor = transform as RectTransform;
                 m_menu.Opened += OnOpened;
@@ -100,7 +110,7 @@ namespace Battlehub.UIControls.MenuControl
         {
             m_canvasGroup = GetComponentInParent<CanvasGroup>();
 
-            if(m_menu != null && (m_menu.Items == null || m_menu.Items.Length == 0))
+            if (m_menu != null && (m_menu.Items == null || m_menu.Items.Length == 0))
             {
                 gameObject.SetActive(false);
             }
@@ -108,7 +118,7 @@ namespace Battlehub.UIControls.MenuControl
 
         private void OnDestroy()
         {
-            if(m_menu != null)
+            if (m_menu != null)
             {
                 m_menu.Opened -= OnOpened;
                 m_menu.Closed -= OnClosed;
@@ -127,7 +137,7 @@ namespace Battlehub.UIControls.MenuControl
                 return;
             }
 
-            if(m_menu.IsOpened)
+            if (m_menu.IsOpened)
             {
                 m_menu.Close();
             }
@@ -135,24 +145,32 @@ namespace Battlehub.UIControls.MenuControl
             {
                 m_menu.Open();
             }
-            
+
         }
 
         void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
         {
-            if(m_canvasGroup && !m_canvasGroup.interactable)
+            if (m_canvasGroup && !m_canvasGroup.interactable)
             {
                 return;
             }
 
             m_isPointerOver = true;
-            if(m_menu != null && m_menu.gameObject.activeSelf)
+            if (m_menu != null && m_menu.gameObject.activeSelf)
             {
                 m_selection.color = m_focusedColor;
+                if (FocusedImage != null)
+                {
+                    m_selection.sprite = FocusedImage;
+                }
             }
             else
             {
                 m_selection.color = m_pointerOverColor;
+                if (PointerOverImage != null)
+                {
+                    m_selection.sprite = PointerOverImage;
+                }
             }
         }
 
@@ -167,31 +185,51 @@ namespace Battlehub.UIControls.MenuControl
             if (m_menu != null && m_menu.gameObject.activeSelf)
             {
                 m_selection.color = m_focusedColor;
+                if (FocusedImage != null)
+                {
+                    m_selection.sprite = FocusedImage;
+                }
             }
             else
             {
                 m_selection.color = m_normalColor;
+                if (NormalImage != null)
+                {
+                    m_selection.sprite = NormalImage;
+                }
             }
         }
 
         private void OnClosed(object sender, System.EventArgs e)
         {
-            if(m_isPointerOver)
+            if (m_isPointerOver)
             {
                 m_selection.color = m_pointerOverColor;
+                if (PointerOverImage != null)
+                {
+                    m_selection.sprite = PointerOverImage;
+                }
             }
             else
             {
                 m_selection.color = m_normalColor;
+                if (NormalImage != null)
+                {
+                    m_selection.sprite = NormalImage;
+                }
             }
         }
 
         private void OnOpened(object sender, System.EventArgs e)
         {
             m_selection.color = m_focusedColor;
+            if (FocusedImage != null)
+            {
+                m_selection.sprite = FocusedImage;
+            }
         }
 
-     
+
     }
 
 }
