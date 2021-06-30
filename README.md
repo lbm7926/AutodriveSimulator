@@ -1,2 +1,0 @@
-# AutodriveSimulator
-AutodriveSimulator
